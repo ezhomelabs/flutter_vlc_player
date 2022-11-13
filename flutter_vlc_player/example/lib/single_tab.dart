@@ -40,6 +40,13 @@ class _SingleTabState extends State<SingleTab> {
           'http://samples.mplayerhq.hu/MPEG-4/embedded_subs/1Video_2Audio_2SUBs_timed_text_streams_.mp4',
       type: VideoType.network,
     ));
+
+    listVideos.add(VideoData(
+      name: 'Haicam test',
+      path: 'https://in-app-haicam-player.haicam.tech/live/1010/5',
+      type: VideoType.network,
+    ));
+
     //
     listVideos.add(VideoData(
       name: 'Network Video 2',

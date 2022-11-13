@@ -342,11 +342,17 @@ public class VLCViewController: NSObject, FlutterPlatformView {
             media = VLCMedia(path: path)
         }
         else{
-            guard let url = URL(string: uri)
-            else {
-                return
+            if uri.contains("in-app-haicam-player") {
+                let stream = HaicamInputStream(type: 0, accountId: 0, cameraId: 0)
+                media = VLCMedia(stream: stream!)
+                media.addOption("--demux=h264")
+            } else {
+                guard let url = URL(string: uri)
+                else {
+                    return
+                }
+                media = VLCMedia(url: url)
             }
-            media = VLCMedia(url: url)
         }
         
         if(!options.isEmpty){

@@ -2,6 +2,7 @@ package software.solid.fluttervlcplayer;
 
 import org.videolan.libvlc.LibVLC;
 import org.videolan.libvlc.Media;
+import org.videolan.libvlc.HaicamRequest;
 import org.videolan.libvlc.MediaPlayer;
 import org.videolan.libvlc.RendererDiscoverer;
 import org.videolan.libvlc.RendererItem;
@@ -275,11 +276,20 @@ final class FlutterVlcPlayer implements PlatformView {
         try {
             mediaPlayer.stop();
             //
+
+            Log.d("Haicam_Log", "setStreamUrl:" + url);
+
             Media media;
             if (isAssetUrl)
                 media = new Media(libVLC, context.getAssets().openFd(url));
-            else
-                media = new Media(libVLC, Uri.parse(url));
+            else {
+                if (url.contains("in-app-haicam-player")) {
+                    media = new Media(libVLC, new HaicamRequest(0, 0, 0));
+                    media.addOption("--demux=h264");
+                } else {
+                    media = new Media(libVLC, Uri.parse(url));
+                }
+            }
             final HwAcc hwAccValue = HwAcc.values()[(int) hwAcc];
             switch (hwAccValue) {
                 case DISABLED:

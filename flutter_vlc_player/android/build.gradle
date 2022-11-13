@@ -1,5 +1,5 @@
-group 'software.solid.fluttervlcplayer'
-version '1.0-SNAPSHOT'
+group 'tech.haicam.fluttervlcplayer'
+version '1.0'
 
 buildscript {
     repositories {
@@ -26,7 +26,15 @@ android {
 
     defaultConfig {
         minSdkVersion 20
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            moduleName 'vlcjni'
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_STL=c++_shared'
+            }
+        }
     }
     lintOptions {
         disable 'InvalidPackage'
@@ -35,11 +43,25 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+        }
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java']
+            res.srcDirs = ['res']
+            jniLibs.srcDirs = ['src/main/cpp/libs']
+            manifest.srcFile 'AndroidManifest.xml'
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'org.videolan.android:libvlc-all:3.5.0-eap6'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.annotation:annotation:1.2.0'
