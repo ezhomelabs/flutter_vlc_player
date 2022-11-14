@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_vlc_player'
-  s.version          = '3.0.3'
+  s.version          = '3.0.4'
   s.summary          = 'A new flutter plugin project.'
   s.description      = <<-DESC
   A VLC-powered alternative to Flutter video_player. Supports multiple players on one screen.
