@@ -1,5 +1,5 @@
 import Foundation
-import Flutter
+import FlutterMacOS
 
 public class VLCViewBuilder: NSObject, VlcPlayerApi{
     var players = [Int:VLCViewController]()

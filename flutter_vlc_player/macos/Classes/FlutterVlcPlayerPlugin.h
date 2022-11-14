@@ -1,4 +1,4 @@
-#import <Flutter/Flutter.h>
+#import <FlutterMacOS/FlutterMacOS.h>
 
 @interface FlutterVlcPlayerPlugin : NSObject<FlutterPlugin>
 @end

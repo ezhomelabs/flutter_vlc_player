@@ -1,5 +1,5 @@
 import Foundation
-import Flutter
+import FlutterMacOS
 
 public class SwiftFlutterVlcPlayerPlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {

@@ -14,8 +14,8 @@ Pod::Spec.new do |s|
   s.author           = { 'Your Company' => 'email@example.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
-  s.dependency 'Flutter'
   s.platform = :osx, '10.11'
+  s.dependency 'FlutterMacOS'
   s.dependency 'VLCKit', '~> 3.4'
   s.static_framework = true
 
