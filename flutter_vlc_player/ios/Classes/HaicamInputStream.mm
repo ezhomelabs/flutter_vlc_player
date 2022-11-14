@@ -30,7 +30,7 @@ void (*haicam_libvlc_close_callback)(void *opaque) = NULL;
         
         [self setDelegate:self];
 
-        self.streamStatus = NSStreamStatusNotOpen;
+        streamStatus = NSStreamStatusNotOpen;
 
         haicamObj = haicam_libvlc_play_callback(type, accountId, cameraId);
     }
