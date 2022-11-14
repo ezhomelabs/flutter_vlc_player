@@ -1,12 +1,12 @@
 import Foundation
 import FlutterMacOS
 import VLCKit
-import UIKit
-
+import Cocoa
+import AppKit
 
 public class VLCViewController: NSObject, FlutterPlatformView {
     
-    var hostedView: UIView
+    var hostedView: NSView
     var vlcMediaPlayer: VLCMediaPlayer
     var mediaEventChannel: FlutterEventChannel
     let mediaEventChannelHandler: VLCPlayerEventStreamHandler
@@ -14,7 +14,7 @@ public class VLCViewController: NSObject, FlutterPlatformView {
     let rendererEventChannelHandler: VLCRendererEventStreamHandler
     var rendererdiscoverers: [VLCRendererDiscoverer] = [VLCRendererDiscoverer]()
     
-    public func view() -> UIView {
+    public func view() -> NSView {
         return hostedView
     }
     
@@ -29,7 +29,7 @@ public class VLCViewController: NSObject, FlutterPlatformView {
             binaryMessenger: messenger
         )
         
-        self.hostedView = UIView(frame: frame)
+        self.hostedView = NSView(frame: frame)
         self.vlcMediaPlayer = VLCMediaPlayer()
 //        self.vlcMediaPlayer.libraryInstance.debugLogging = true
 //        self.vlcMediaPlayer.libraryInstance.debugLoggingLevel = 3
@@ -112,7 +112,7 @@ public class VLCViewController: NSObject, FlutterPlatformView {
     
     public func takeSnapshot() -> String? {
         
-        let drawable: UIView = self.vlcMediaPlayer.drawable as! UIView
+        let drawable: NSView = self.vlcMediaPlayer.drawable as! NSView
         let size = drawable.frame.size
         UIGraphicsBeginImageContextWithOptions(size, _: false, _: 0.0)
         let rec = drawable.frame
