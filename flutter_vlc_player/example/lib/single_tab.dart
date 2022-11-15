@@ -15,12 +15,12 @@ class SingleTab extends StatefulWidget {
 }
 
 class _SingleTabState extends State<SingleTab> {
-  VlcPlayerController _controller;
+  late VlcPlayerController _controller;
   final _key = GlobalKey<VlcPlayerWithControlsState>();
 
   //
-  List<VideoData> listVideos;
-  int selectedVideoIndex;
+  late List<VideoData> listVideos;
+  late int selectedVideoIndex;
 
   Future<File> _loadVideoToFs() async {
     final videoData = await rootBundle.load('assets/sample.mp4');
@@ -189,7 +189,7 @@ class _SingleTabState extends State<SingleTab> {
                     selectedVideoIndex == index ? Colors.white : Colors.black,
               ),
               title: Text(
-                video.name,
+                video.name ?? "",
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color:
