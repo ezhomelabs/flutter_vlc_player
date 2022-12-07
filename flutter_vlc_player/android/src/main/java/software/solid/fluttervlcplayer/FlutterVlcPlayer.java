@@ -64,9 +64,7 @@ final class FlutterVlcPlayer implements PlatformView {
     public void dispose() {
         if (isDisposed)
             return;
-        //
-        textureView.dispose();
-        textureEntry.release();
+        
         mediaEventChannel.setStreamHandler(null);
         rendererEventChannel.setStreamHandler(null);
         if (mediaPlayer != null) {
@@ -75,6 +73,10 @@ final class FlutterVlcPlayer implements PlatformView {
             mediaPlayer.release();
             mediaPlayer = null;
         }
+    
+        textureView.dispose();
+        textureEntry.release();
+
         if (libVLC != null) {
             libVLC.release();
             libVLC = null;
